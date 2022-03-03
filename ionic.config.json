@@ -1,0 +1,7 @@
+{
+  "name": "memBank",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
