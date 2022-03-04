@@ -1,12 +1,15 @@
-ion-menu ion-content {
-  --background: var(--ion-item-background, var(--ion-background-color, #fff));
+ion-menu ion-content  {
+  --background: #202124;
+  // --background:#fff
 }
+
 
 ion-menu.md ion-content {
   --padding-start: 8px;
   --padding-end: 8px;
   --padding-top: 20px;
   --padding-bottom: 20px;
+
 }
 
 ion-menu.md ion-list {
@@ -133,4 +136,16 @@ ion-item.selected {
 // ion-content{
 //   font-family: Roboto,'Segoe UI', Tahoma,  sans-serif !important;
 //   font-size: 81.25%;
+// }
+
+// @media only screen and (max-width: 915px) {
+//   ion-menu.md ion-content.md  {
+//     // --background: var(--ion-item-background, var(--ion-background-color, #fff));
+//     --background:#fff
+//   }
+  
+//   ion-item.md{
+//     --background:#fff
+  
+//   }
 // }
