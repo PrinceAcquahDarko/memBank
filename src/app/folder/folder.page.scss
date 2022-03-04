@@ -93,6 +93,11 @@ vg-controls{
   justify-content: center;
 }
 
+ion-content.md{
+  background:#202124;
+  color:white;
+}
+
 
 ion-card > vg-player{
   width:100%;
@@ -119,14 +124,18 @@ vg-overlay-play{
 
   ul{
     width:100%;
-  margin-left: -20px;
+    margin-left: -20px;
+    margin-top:20px;
 
   }
 
   ul > li{
     padding-left:8px;
     margin-top: 6px;
+    color:white
   }
+
+  
 
   ion-toolbar > div{
       margin-top:-30px;
@@ -155,6 +164,10 @@ vg-overlay-play{
     font-size: 18px;
      font-weight: 50; 
      line-height: 1.8;
+  }
+
+  ion-card-title.md{
+    color:white
   }
 
 
