@@ -5,11 +5,13 @@ ion-menu-button {
 ion-title{
   font-size: 22px;
   font-weight: 600;
-
   min-height: 20px;
 }
 
-ion-toolbar{
+
+
+
+ion-toolbar.ios{
   --background:#202124;
 }
 
@@ -140,6 +142,10 @@ vg-overlay-play{
   ion-title.ios{
     font-size: 18px;
 }
+
+  ion-title.md{
+    color:white;
+  }
 
   ion-card-title.ios{
     font-size: 18px;
