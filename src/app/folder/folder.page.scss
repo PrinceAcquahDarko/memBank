@@ -11,9 +11,7 @@ ion-title{
 
 
 
-ion-toolbar.ios{
-  --background:#202124;
-}
+
 
 ion-toolbar > div{
   width:90%;
@@ -46,12 +44,17 @@ ul{
 
 ul > li{
   list-style-type: none;
-  font-size: 108%;
-  font-weight:450;
-  letter-spacing: .25px;
+  font-size: 14px;
+  // min-height: 48px;
+  color: #9aa0a6;
+  font-weight: 600;
   cursor: pointer;
 }
-
+ion-card-title{
+  cursor: pointer;
+  color: #9aa0a6;
+  font-weight: 600;
+}
 ::-webkit-scrollbar,
 *::-webkit-scrollbar {
 display: none;
@@ -118,9 +121,7 @@ vg-overlay-play{
     margin-top:4px;
   }
 
-  ion-toolbar.md{
-    --background:#202124;
-  }
+ 
 
   ul{
     width:100%;
@@ -132,7 +133,10 @@ vg-overlay-play{
   ul > li{
     padding-left:8px;
     margin-top: 6px;
-    color:white
+    font-size: 14px;
+    // min-height: 48px;
+    color: #9aa0a6;
+    font-weight: 600;
   }
 
   
@@ -164,10 +168,16 @@ vg-overlay-play{
     font-size: 18px;
      font-weight: 50; 
      line-height: 1.8;
+     
+     // min-height: 48px;
+     color: #9aa0a6;
+     font-weight: 600;
   }
 
   ion-card-title.md{
-    color:white
+    // min-height: 48px;
+    color: #9aa0a6;
+    font-weight: 600;
   }
 
 

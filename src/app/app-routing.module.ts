@@ -8,15 +8,15 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'folder/:id',
+    path: 'folder/Inbox',
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
   },
   {
-    path: 'detail',
+    path: 'folder/detail',
     loadChildren: () => import('./detail/detail.module').then( m => m.DetailPageModule)
   },
   {
-    path: 'profile',
+    path: 'folder/profile',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   },
   {
