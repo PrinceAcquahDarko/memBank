@@ -1,0 +1,67 @@
+
+ion-grid{
+    width:80%;
+    margin:4em auto auto auto;
+    padding: 70px 0;
+}
+
+ion-col > ion-input{
+    padding: 6px;
+    margin:0;
+    // --background: #fff;
+    border: 1px solid #006efb;
+    height: 35px;
+    border-radius: 20px;
+    width: 60%;
+    margin-top: 10px;
+
+
+  }
+
+  ion-label, label{
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0px;
+    color: #9aa0a6;
+
+    // margin-bottom: 30px !important;
+
+  }
+
+  .bttn{
+    margin-top:1.3em;
+  }
+  .bttn > ion-button{
+    width:150px;
+    --border-radius: 18px;
+
+  }
+
+  .custom-label{
+    margin-top:1em;
+    border:1px solid #ccc;
+    display: inline-block;
+    padding:6px 6px;
+    cursor: pointer
+}
+
+  input[type="file"]{
+    display: none;
+}
+
+
+
+  @media only screen and (max-width: 915px) {
+      ion-grid{
+          margin:auto;
+      }
+
+      ion-col > ion-input{
+        width: 100%;
+      }
+
+      .bttn{
+        text-align: center;
+      }
+
+  }

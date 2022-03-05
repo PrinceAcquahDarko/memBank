@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>MemBank</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <form #form="ngForm" (ngSubmit)="upload()">
+      <ion-row>
+        <ion-col size="12">
+          <ion-label>Title</ion-label><br>
+          <ion-input  #usernameField = 'ngModel' [(ngModel)]="userCredentials.title" name="titleField" required type="text"></ion-input>
+
+        </ion-col>
+          <ion-col size="12" >
+            <ion-label>Description</ion-label><br>
+          <ion-input #description = 'ngModel' [(ngModel)]="userCredentials.description" required type="text" name="description"></ion-input>
+
+
+        </ion-col>
+        
+      <ion-col size="12" >
+        <label for="fileI" class="custom-label">{{label}}</label>
+       <input id="fileI" type="file"  name="pic" (change) ="selectImage($event)">
+      <!-- <small *ngIf="registerForm.get('email')?.errors?.required && registerForm.get('email')?.touched">email is required</small> -->
+
+    </ion-col>
+      </ion-row>
+      <div class="bttn">
+        <ion-button mode="md" type='submit' >
+          <!-- <ion-spinner name="lines-small"  *ngIf='show'></ion-spinner> -->
+          Upload</ion-button>
+    </div>
+  
+    </form>
+    </ion-grid>
+</ion-content>

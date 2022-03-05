@@ -30,6 +30,18 @@ const routes: Routes = [
   {
     path: 'folder/favourites',
     loadChildren: () => import('./favourites/favourites.module').then( m => m.FavouritesPageModule)
+  },
+  {
+    path: 'folder/login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'folder/register',
+    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'folder/upload',
+    loadChildren: () => import('./upload/upload.module').then( m => m.UploadPageModule)
   }
 ];
 
