@@ -4,11 +4,11 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Inbox',
+    redirectTo: 'folder/home',
     pathMatch: 'full'
   },
   {
-    path: 'folder/Inbox',
+    path: 'folder/home',
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
   },
   {
@@ -20,15 +20,15 @@ const routes: Routes = [
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   },
   {
-    path: 'settings',
+    path: 'folder/settings',
     loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
   },
   {
-    path: 'gallary',
+    path: 'folder/gallary',
     loadChildren: () => import('./gallary/gallary.module').then( m => m.GallaryPageModule)
   },
   {
-    path: 'favourites',
+    path: 'folder/favourites',
     loadChildren: () => import('./favourites/favourites.module').then( m => m.FavouritesPageModule)
   }
 ];

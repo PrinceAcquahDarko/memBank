@@ -36,9 +36,30 @@ p{
     font-weight: 600; 
 }
 
+  
+h3{
+    color:#fff
+  }
+
 .meta{
     width:80%;
     margin:2em auto 2em auto;
+}
+
+.options{
+    width:60%;
+}
+
+.optionsCard{
+    width:100%;
+    height: 50px; 
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.fav{
+    cursor: pointer;
 }
 
 .picInfo{
@@ -94,6 +115,10 @@ p{
 
     .meta{
         margin:0.5em auto 0.5em auto;
+    }
+
+    .options{
+        width:100%;
     }
 }
 

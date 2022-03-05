@@ -8,13 +8,13 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header class="ion-no-border ion-no-padding head" >
+  <ion-header class="ion-no-border ion-no-padding" slot="fixed" >
     <ion-toolbar>
       <div>
         <ul>
-          <li>All</li>
-          <li>Videos</li>
-          <li>Pics</li>
+          <li routerLink="/folder/gallary">All</li>
+          <li routerLink="/folder/favourites"> Videos</li>
+          <li routerLink="/folder/settings">Pics</li>
           <li>gifs</li>
           <li class="header">
             <ion-input class="search header" placeholder="search" type="text" name="search">

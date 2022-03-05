@@ -1,9 +1,57 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>settings</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>MemBank</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+  <div class="main">
+    <!-- <ion-card> -->
+      <ion-grid>
+      <form  #form="ngForm" (ngSubmit)="submit()">
+        <ion-row>
+          <ion-col sizeXs="12" sizeMd="6">
+            <ion-label>First Name</ion-label><br>
+           <ion-input #firstname = 'ngModel' [(ngModel)]="credentials.firstname" required name="firstname"></ion-input>
+
+        </ion-col>
+        <ion-col sizeXs="12" sizeMd="6">
+          <ion-label>Last Name</ion-label><br>
+          <ion-input #lastname = 'ngModel' [(ngModel)]="credentials.lastname" required name="lastname"></ion-input>
+
+        </ion-col>
+      </ion-row>
+      <ion-row >
+            
+        <ion-col sizeXs="12" sizeMd="6">
+          <ion-label>Password</ion-label><br>
+          <ion-input  type="password" #password = 'ngModel' [(ngModel)]="credentials.password"  name="password"></ion-input>
+        </ion-col>
+        <ion-col sizeXs="12" sizeMd="6">
+          <ion-label>Email</ion-label>
+         <ion-input  type="email" #email = 'ngModel' [(ngModel)]="credentials.email" required name="email"></ion-input>
+
+      </ion-col>
+   
+      </ion-row>
+
+      <ion-col sizeXs="12" sizeMd="6">
+        <label for="fileI" class="custom-label">{{label}}</label>
+       <input id="fileI" type="file"  name="pic" (change) ="selectImage($event)">
+      <!-- <small *ngIf="registerForm.get('email')?.errors?.required && registerForm.get('email')?.touched">email is required</small> -->
+
+    </ion-col>
+        <div class="bttn">
+          <ion-button type='submit' [disabled] = "form.invalid">Update</ion-button>
+      </div>
+      </form>
+      </ion-grid>
+    <!-- </ion-card> -->
+  </div>
+ 
+   
 </ion-content>

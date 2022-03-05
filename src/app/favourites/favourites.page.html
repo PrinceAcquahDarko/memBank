@@ -1,9 +1,179 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>favourites</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>MemBank</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
+  <ion-header class="ion-no-border ion-no-padding head" >
+    <ion-toolbar>
+      <div>
+        <ul>
+          <li routerLink="/folder/gallary">All</li>
+          <li routerLink="/folder/favourites"> Videos</li>
+          <li>Pics</li>
+          <li>gifs</li>
+          <li class="header">
+            <ion-input class="search header" placeholder="search" type="text" name="search">
+              <ion-icon name="search"></ion-icon>
+              </ion-input>
+            </li>
+          <li class="mobSearch">
+            <ion-icon  name="search"></ion-icon>
+
+          </li>
+        </ul>
+     
+      </div>
+      
+    </ion-toolbar>
+  </ion-header>
+
+  <div>
+    <!-- input for search -->
+  </div>
+
+  <ion-grid >
+    <ion-row>
+      <ion-col size-sm="12" size-md="3">
+        <ion-card >
+          <img src="assets/ewu.jpg" />
+          <ion-card-header>
+            <ion-card-title routerLink="/folder/detail">killer</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size-sm="12" size-md="3">
+          <ion-card>
+            <vg-player>
+              <vg-overlay-play></vg-overlay-play>
+              <vg-buffering></vg-buffering>
+              <!-- <vg-scrub-bar>
+                <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+              </vg-scrub-bar> -->
+              <vg-controls>
+                <!-- <vg-playback-button></vg-playback-button> -->
+                <!-- <vg-play-pause></vg-play-pause> -->
+                <!-- <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+                <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+                <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+                <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display> -->
+                <!-- <vg-track-selector></vg-track-selector> -->
+                <!-- <vg-mute></vg-mute> -->
+                <!-- <vg-volume></vg-volume> -->
+                <!-- <vg-fullscreen></vg-fullscreen> -->
+              </vg-controls>
+              <video [vgMedia]="$any(media)" #media id="singleVideo" preload="auto" crossorigin>
+                <source src="assets/brandnewDay.mp4" >
+                <!-- <source src="http://static.videogular.com/assets/videos/videogular.ogg" type="video/ogg"> -->
+                <!-- <source src="http://static.videogular.com/assets/videos/videogular.webm" type="video/webm"> -->
+                <!-- <track kind="subtitles" label="English" src="http://static.videogular.com/assets/subs/pale-blue-dot.vtt"
+                  srclang="en" default>
+                <track kind="subtitles" label="Español" src="http://static.videogular.com/assets/subs/pale-blue-dot-es.vtt"
+                  srclang="es"> -->
+              </video>
+            </vg-player>
+            <ion-card-header>
+              <ion-card-title>Madison, WI</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+      </ion-col>
+      <ion-col size-sm="12" size-md="3">
+        <ion-card>
+          <img src="assets/ewu.jpg" />
+          <ion-card-header>
+            <ion-card-title>Madison, WI</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size-sm="12" size-md="3">
+        <ion-card>
+          <img src="assets/ewu.jpg" />
+          <ion-card-header>
+            <ion-card-title>Madison, WI</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size-sm="12" size-md="3">
+        <ion-card>
+          <img src="assets/ewu.jpg" />
+          <ion-card-header>
+            <ion-card-title>Madison, WI</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size-sm="12" size-md="3">
+        <ion-card>
+          <img src="assets/ewu.jpg" />
+          <ion-card-header>
+            <ion-card-title>Madison, WI</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size-sm="12" size-md="3">
+        <ion-card>
+          <img src="assets/ewu.jpg" />
+          <ion-card-header>
+            <ion-card-title>Madison, WI</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size-sm="12" size-md="3">
+        <ion-card>
+          <img src="assets/ewu.jpg" />
+          <ion-card-header>
+            <ion-card-title>Madison, WI</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size-sm="12" size-md="3">
+        <ion-card>
+          <img src="assets/ewu.jpg" />
+          <ion-card-header>
+            <ion-card-title>Madison, WI</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size-sm="12" size-md="3">
+        <ion-card>
+          <img src="assets/ewu.jpg" />
+          <ion-card-header>
+            <ion-card-title>Madison, WI</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size-sm="12" size-md="3">
+        <ion-card>
+          <img src="assets/ewu.jpg" />
+          <ion-card-header>
+            <ion-card-title>Madison, WI</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size-sm="12" size-md="3">
+        <ion-card>
+          <img src="assets/ewu.jpg" />
+          <ion-card-header>
+            <ion-card-title>Madison, WI</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      <ion-col size-sm="12" size-md="3">
+        <ion-card>
+          <img src="assets/ewu.jpg" />
+          <ion-card-header>
+            <ion-card-title>Madison, WI</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+      </ion-row>
+      </ion-grid>
+
 
 </ion-content>
+
