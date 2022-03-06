@@ -41,6 +41,10 @@ ion-toolbar.md{
     --background:#202124;
   }
 
+  ion-input{
+    color:white;
+  }
+
   ion-title.md{
     color:white;
   }
@@ -57,6 +61,11 @@ ion-toolbar.md{
 ion-menu-button{
     --color:#428cff
 }
+
+// ion-back-button{
+//   // --color: red;
+//   display:block;
+// }
 
 //   ion-content.md{
 //     background:#202124;

@@ -11,6 +11,7 @@ import { VgCoreModule } from '@videogular/ngx-videogular/core';
 import { VgControlsModule } from '@videogular/ngx-videogular/controls';
 import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
+import { SharedModule } from '../shared/shared/shared.module';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
-    DetailPageRoutingModule
+    DetailPageRoutingModule,
+    SharedModule
   ],
   declarations: [DetailPage]
 })

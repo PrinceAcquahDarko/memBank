@@ -15,4 +15,10 @@ export class FolderPage implements OnInit {
     this.folder = this.activatedRoute.snapshot.paramMap.get('id');
   }
 
+  //to do
+
+  //change input to text-area in upload
+  //make header disappear when scrolling
+  //add search to mobile(make it visible)
+
 }
