@@ -9,11 +9,13 @@ import { VgControlsModule } from '@videogular/ngx-videogular/controls';
 import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { BigVidComponent } from '../big-vid/big-vid.component';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [HeaderComponent, BackHeaderComponent,VidComponent, BigVidComponent],
   imports: [
     CommonModule,
+    IonicModule,
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,
