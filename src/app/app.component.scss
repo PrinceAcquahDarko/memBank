@@ -3,15 +3,15 @@ ion-menu ion-content  {
   // --background:#fff
 }
 
-ion-list.md{
+ion-list.md, ion-list.ios{
   background:#202124;
 }
 
-ion-item.md{
+ion-item.md, ion-list.ios{
   --background:#202124;
 }
 
-ion-label.md{
+ion-label.md, ion-list.ios{
   --color:white
 }
 

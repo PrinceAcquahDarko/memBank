@@ -28,7 +28,7 @@
 
 
 
-ion-card.md{
+ion-card.md, ion-card.ios{
     --background:#292a2d;
     color:white
 }
@@ -43,27 +43,24 @@ ion-toolbar.md{
 
 
 
-  ion-title.md{
+  ion-title.md, ion-title.ios{
     color:white;
   }
 
-  ion-title.ios{
-    color:white;
-  }
 
-  ion-content.md{
+  ion-content.md, ion-content.ios{
     --background:#202124;
   }
 
-  ion-content.ios{
-    --background:#202124;
-  }
+  // ion-content.ios{
+  //   --background:red;
+  // }
 
 //   ion-menu-button{
 //     background:#428cff
 //   }
 
-ion-menu-button{
+ion-menu-button, ion-back-button{
     --color:#428cff
 }
 
