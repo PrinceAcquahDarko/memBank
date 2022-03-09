@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 
 function passwordMatcher(c: AbstractControl): { [key:string]: boolean } | null {
@@ -21,7 +23,8 @@ function passwordMatcher(c: AbstractControl): { [key:string]: boolean } | null {
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-
+  errormsg = ''
+  show = false
   registerForm: FormGroup = this.fb.group({
 
     firstname: ['', [Validators.required]],
@@ -36,11 +39,36 @@ export class RegisterPage implements OnInit {
     }, {validators: passwordMatcher}),
 
   })
-  constructor(private fb: FormBuilder,) { }
+  constructor(private fb: FormBuilder,private _router:Router, private _as: AuthService) { }
 
   ngOnInit() {
   }
 
-  registerUser(){}
+  registerUser(){
+    this.show = true
+    if(this.registerForm?.valid){
+      let data = this.formatValue()
+      this._as.registerUser(data).subscribe(
+        res => {
+          console.log(res)
+        },
+        err => {
+          this.show = false
+          this.errormsg = err;
+
+        },
+      )
+    }
+  }
+
+  formatValue(){
+    return {
+      firstName : this.registerForm.value.firstname,
+      lastName : this.registerForm.value.lastname,
+      email : this.registerForm.value.email,
+      password : this.registerForm.value.passwordGroup.password
+    }
+
+  }
 
 }

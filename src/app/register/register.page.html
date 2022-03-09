@@ -2,6 +2,9 @@
 
 
 <ion-content>
+  <div class="errmsg">
+    <span >{{errormsg}}</span>
+  </div>
   <ion-grid>
     <form [formGroup] ="registerForm" (ngSubmit)= "registerUser()">
     <ion-row>
@@ -49,7 +52,7 @@
         </ion-row>
         <div class="bttn">
           <ion-button type='submit'  [disabled] ="registerForm.invalid">
-        <!-- <ion-spinner name="lines-small" *ngIf='show'></ion-spinner> -->
+        <ion-spinner name="lines-small" *ngIf='show'></ion-spinner>
 
             Register</ion-button>
       </div>

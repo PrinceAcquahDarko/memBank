@@ -3,6 +3,9 @@
 
 <ion-content>
   <ion-grid>
+    <div class="errmsg">
+      <span >{{errormsg}}</span>
+    </div>
     <form #form="ngForm" (ngSubmit)="loginUser()">
       <ion-row>
         <ion-col size="12">
@@ -19,7 +22,7 @@
       </ion-row>
       <div class="bttn">
         <ion-button mode="md" type='submit' >
-          <!-- <ion-spinner name="lines-small"  *ngIf='show'></ion-spinner> -->
+          <ion-spinner name="lines-small"  *ngIf='show'></ion-spinner>
           Log In</ion-button>
     </div>
     <div class="signup">

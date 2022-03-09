@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { MediaService } from '../media/media.service';
 
 @Component({
   selector: 'app-upload',
@@ -6,23 +8,56 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./upload.page.scss'],
 })
 export class UploadPage implements OnInit {
-  label = 'Upload media'
+  @ViewChild(NgForm) uploadForm: NgForm | undefined
 
+  get isValid(): boolean{
+    return this.uploadForm?.valid ? true : false
+  }
+  label = 'Upload media'
+  errormsg = ''
   selectImage(event: any){
     if(event.target.files.length > 0){
       const file = event.target.files[0];
       this.label = file.name
-      // this.credentials.pic = file
+      this.mediaCredentials.file = file
     }
   }
-  userCredentials = {
+  mediaCredentials = {
     title: '',
     description: '',
+    file: ''
   };
-  constructor() { }
+  constructor(private _ms:MediaService) { }
 
   ngOnInit() {
   }
 
-  upload(){}
+  upload(){
+
+    if(this.isValid && this.mediaCredentials.file){
+      const formdata = new FormData()
+      formdata.append('title', this.mediaCredentials.title)
+      formdata.append('file', this.mediaCredentials.file)
+      formdata.append('description', this.mediaCredentials.description)
+  
+      console.log(formdata)
+      this._ms.uploadMedia(formdata).subscribe(
+        res => {
+          console.log(res)
+        },
+        err => this.errormsg = err
+      )
+    }else{
+      this.errormsg = 'invalid credentials'
+    }
+    console.log(this.getAllMedia())
+  
+  }
+
+  getAllMedia(){
+   return this._ms.getAllMedia().subscribe(
+      res => console.log(res),
+      err => console.log(err, 'from error oo eeii')
+    )
+  }
 }

@@ -19,6 +19,14 @@ ion-col > ion-input{
 
   }
 
+  .errmsg{
+    margin-bottom: 1em;
+  }
+
+  .errmsg > span{
+    color:red;
+  }
+
   ion-label{
     font-size: 0.8rem;
     font-weight: 600;

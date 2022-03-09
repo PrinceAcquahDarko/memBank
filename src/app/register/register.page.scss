@@ -34,6 +34,14 @@ ion-input{
 
   }
 
+  .errmsg{
+    margin-bottom: 1em;
+  }
+
+  .errmsg > span{
+    color:red;
+  }
+
   small{
       color: red;
   }
@@ -41,11 +49,17 @@ ion-input{
 
   @media only screen and (max-width: 915px) {
     ion-grid{
-        width: 90%;
+        width: 80%;
+        margin:auto;
+
     }
 
     ion-input{
         width: 100%;
 
+      }
+
+      .bttn{
+        text-align: center;
       }
   }
