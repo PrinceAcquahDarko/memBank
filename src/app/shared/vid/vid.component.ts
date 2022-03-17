@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-vid',
@@ -7,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VidComponent implements OnInit {
 
+  @Input() inputMedia
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.inputMedia)
+  }
 
 }

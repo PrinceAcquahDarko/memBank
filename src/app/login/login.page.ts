@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
+import { Storage } from '@ionic/storage-angular';
+
 
 @Component({
   selector: 'app-login',
@@ -20,7 +22,7 @@ export class LoginPage implements OnInit {
     email: '',
     password: '',
   };
-  constructor(private _as: AuthService, private _router:Router) { }
+  constructor(private _as: AuthService, private _router:Router, private _storage:Storage) { }
 
   ngOnInit() {
   }
@@ -30,7 +32,8 @@ export class LoginPage implements OnInit {
       this.show = true;
       this._as.loginUser(this.userCredentials).subscribe(
         (res) => {
-          console.log(res)
+          console.log(res);
+          this._storage.set('token', res.accesstoken)
         },
         (err) => {
           this.errormsg = err.message;

@@ -1,10 +1,8 @@
 <app-header></app-header>
 
-<ion-content [fullscreen]="true" *ngIf="allMediaWithSearch$ | async as allMedia else loadingOrError">
-
- 
-  <ion-header class="ion-no-border ion-no-padding" slot="fixed" >
-    <ion-toolbar class="head">
+<ion-content [fullscreen]="true">
+  <ion-header class="ion-no-border ion-no-padding" slot="fixed"  *ngIf="User$ | async as user else loadingOrError">
+    <ion-toolbar class="head" *ngIf="user && user.length">
       <div class="mobSearch" *ngIf="search">
         <ion-input class="mobInput" (keyup)="plain($event)" [(ngModel)]='plainSearch' placeholder="search" type="text" name="search">
           <ion-icon name="search"></ion-icon>
@@ -12,14 +10,13 @@
           <div class="cancel"><ion-icon name="close" (click)="toggleInput()"></ion-icon></div>
       </div>
       <div  *ngIf="!search">
-        <!-- "col === 'All' ? 'active' : 'notActive' " -->
         <ul>
             <li [ngClass]= "{'active': col === 'All'}" (click)="fire('All')"  >ALL</li>
             <li [ngClass]= "{'active': col === 'video'}" (click)="fire('video')"> VIDEOS</li>
             <li [ngClass]= "{'active': col === 'image'}" (click)="fire('image')">PICS</li>
             <li [ngClass]= "{'active': col === 'gif'}" (click)="fire('gif')">GIFS</li>
           <li class="header">
-            <ion-input class="search header" (keyup)="plain($event)" [(ngModel)]='plainSearch' placeholder="search" type="text" name="search">
+            <ion-input  class="search header" placeholder="search" type="text" name="search">
               <ion-icon name="search"></ion-icon>
               </ion-input>
             </li>
@@ -28,51 +25,54 @@
 
           </li>
         </ul>
-       
+     
       </div>
-  
-    
+
+      
       
     </ion-toolbar>
   </ion-header>
 
+  <!-- <div *ngIf="user.length === 0">
+        <p>no followers</p>
+  </div> -->
 
-  <ion-grid>
-    <ion-row>
-      <ion-col *ngFor="let media of allMedia " sizeXs="12" sizeMd="3">
+  <ion-grid >
+    <ion-row >
+      <ion-col *ngFor="let m of allMediaWithSearch$ | async" sizeXs="12" sizeMd="3">
         <ion-card >
-          <img *ngIf="media.Mediatype === 'image'" [src]="media.link" />
-          <app-vid [inputMedia] = media *ngIf="media.Mediatype === 'video'"></app-vid>
+          <img *ngIf="m.Mediatype === 'image'" [src]="m.link" />
+          <app-vid [inputMedia] = m *ngIf="m.Mediatype === 'video'"></app-vid>
           <ion-card-header>
-            <ion-card-title (click)="route(media)">{{media.title}}</ion-card-title>
+            <ion-card-title (click)="route(m)">{{m.title}}</ion-card-title>
           </ion-card-header>
         </ion-card>
       </ion-col>
     
       </ion-row>
       </ion-grid>
+      
+    <ng-template #loadingOrError>
+      <ng-container *ngIf="errormsg; else loading">
+        <div  class="errors">
+          <div>
+            {{errormsg}}
+
+          </div>
+
+        </div>
+      </ng-container>
+      <ng-template #loading>
+        <div  class="errors">
+          <div>
+            <ion-spinner name="lines-small" ></ion-spinner>
+
+          </div>
+
+        </div>
+      </ng-template>
+    </ng-template>
+  </ion-content>
 
 
 
-</ion-content>
-
-<ng-template #loadingOrError>
-  <ng-container *ngIf="errormsg; else loading">
-    <div  class="errors">
-      <div>
-        {{errormsg}}
-
-      </div>
-
-    </div>
-  </ng-container>
-  <ng-template #loading>
-    <div  class="errors">
-      <div>
-        <ion-spinner name="lines-small" ></ion-spinner>
-
-      </div>
-
-    </div>
-  </ng-template>
-</ng-template>

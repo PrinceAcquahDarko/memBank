@@ -6,41 +6,44 @@
     <ion-row>
       <ion-col>
         <ion-card>
-          <app-big-vid></app-big-vid>
+          <div class="imgContainer">
+            <img *ngIf="receivedMedia.Mediatype === 'image'" [src]="receivedMedia.link" />
+            <app-big-vid *ngIf="receivedMedia.Mediatype === 'video'" [inputMedia]="receivedMedia"></app-big-vid>
+          </div>
           <ion-card-header>
             <ion-card-title>
               <div class="info">
                 <div>
-                <span><ion-icon name="thumbs-up"></ion-icon> :</span>
-                <span> 1234</span>
+                <span class="fav" (click) = "likes()" ><ion-icon name="thumbs-up"></ion-icon> :</span>
+                <span [ngClass]= "{'like_active': likesColor}"> {{receivedMedia.likes.length}}</span>
 
                 </div>
                 <div >
-                  <span><ion-icon name="thumbs-down"></ion-icon> :</span>
+                  <span class="fav" (click)="dislikes()"><ion-icon name="thumbs-down"></ion-icon> :</span>
 
-                  <span> 454</span>
+                  <span [ngClass]= "{'dislike_active': dislikesColor}"> {{receivedMedia.dislikes.length}}</span>
                 </div>
                 <div>
-                  <span class="fav"><ion-icon name="heart"></ion-icon></span>
+                  <span [ngClass]= "{'fav_active': favColor}" class="fav" (click)="addFav()"><ion-icon name="heart"></ion-icon></span>
 
                 </div>
                 <div>
                   <span class="mob"><ion-icon name="download"></ion-icon> :</span>
 
-                <span class="mob"> 8745</span>
+                <span class="mob">{{receivedMedia.downloads ? receivedMedia.downloads : 0}}</span>
                 </div>
                 <div >
-                  <span class="mob down">download</span>
+                  <span (click)="download()" class="mob down">download</span>
                 </div>
               </div>
 
               <div class="download">
                 <div>
                   <span><ion-icon name="download"></ion-icon> :</span>
-                  <span> 8745</span>
+                  <span> {{receivedMedia.downloads ? receivedMedia.downloads : 0}}</span>
                 </div>
                 <div>
-                  <span class="down">download</span>
+                  <span (click)="download()" class="down">download</span>
                 </div>
               </div>
             </ion-card-title>
@@ -53,12 +56,12 @@
       <ion-grid class="meta">
         <ion-row>
           <ion-col sizeXs="12" sizeMd="8" class="picInfo">
-            <h3>Sabinus being sabinus</h3>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi in ipsa ad amet nemo mollitia magnam alias eligendi laudantium aliquam exercitationem nobis porro harum, cupiditate omnis. Reiciendis veniam nobis soluta.</p>
+            <h3>{{receivedMedia.title}}</h3>
+            <p>{{receivedMedia.description}}</p>
           </ion-col>
           <ion-col sizeXs="12" sizeMd="4">
             <h3>Uploaded by:</h3>
-            <p class="down" routerLink="/folder/profile">Prince Darko</p>
+            <p class="down" (click)="route()" >{{ifOwner ? 'You' : receivedMedia.user.firstName }} {{ifOwner ? '' : receivedMedia.user.lastName}}</p>
           </ion-col>
         </ion-row>
       </ion-grid>

@@ -2,19 +2,19 @@
 
 <ion-content>
 
-    <ion-grid>
+    <ion-grid *ngIf="User">
       <ion-row>
         <ion-col sizeXs="12" sizeMd="5" class="Container" >
-          <img src="assets/ewu.jpg" alt="">
+          <img [src]="User.profilepic ? User.profilepic : 'assets/profilepic.png' " alt="User.firstName">
         </ion-col>
         <ion-col sizeXs="12" sizeMd="7" class="Container"  >
           <div>
-            <h3>Prince Darko</h3>
+            <h3>{{User.firstName}} {{User.lastName}}</h3>
             <div class="following">
-              <div>23 followers</div>
-              <div>22 following</div>
+              <div>{{User.followedBy.length}} followers</div>
+              <div>{{User.following.length}} following</div>
             </div>
-            <ion-button>follow me</ion-button>
+            <ion-button (click) = "follow()">{{following ? 'following' : 'follow Me'}}</ion-button>
           </div>
         
         </ion-col>
@@ -23,19 +23,25 @@
 
     <ion-header class="ion-no-border ion-no-padding head" >
       <ion-toolbar>
-        <div>
+        <div class="mobSearch" *ngIf="search">
+          <ion-input class="mobInput" (keyup)="plain($event)" [(ngModel)]='plainSearch' placeholder="search" type="text" name="search">
+            <ion-icon name="search"></ion-icon>
+            </ion-input>
+            <div class="cancel"><ion-icon name="close" (click)="toggleInput()"></ion-icon></div>
+        </div>
+        <div *ngIf="!search">
           <ul>
-            <li>All</li>
-            <li>Videos</li>
-            <li>Pics</li>
-            <li>gifs</li>
+            <li [ngClass]= "{'active': col === 'All'}" (click)="fire('All')"  >ALL</li>
+            <li [ngClass]= "{'active': col === 'video'}" (click)="fire('video')"> VIDEOS</li>
+            <li [ngClass]= "{'active': col === 'image'}" (click)="fire('image')">PICS</li>
+            <li [ngClass]= "{'active': col === 'gif'}" (click)="fire('gif')">GIFS</li>
             <li class="header">
-              <ion-input class="search header" placeholder="search" type="text" name="search">
+              <ion-input class="search header" (keyup)="plain($event)" [(ngModel)]='plainSearch' placeholder="search" type="text" name="search">
                 <ion-icon name="search"></ion-icon>
                 </ion-input>
               </li>
             <li class="mobSearch">
-              <ion-icon  name="search"></ion-icon>
+              <ion-icon  name="search" (click)="toggleInput()"></ion-icon>
   
             </li>
           </ul>
@@ -46,139 +52,16 @@
     </ion-header>
     <ion-grid class="secondgrid">
       <ion-row>
-        <ion-col size-sm="12" size-md="3">
+        <ion-col *ngFor="let media of User.media" size-sm="12" size-md="3">
           <ion-card >
-            <img src="assets/ewu.jpg" />
+            <img *ngIf="media.Mediatype === 'image'" [src]="media.link" />
+            <app-vid [inputMedia] = media *ngIf="media.Mediatype === 'video'"></app-vid>
             <ion-card-header>
-              <ion-card-title routerLink="/folder/detail">killer</ion-card-title>
+              <ion-card-title (click)="route(media)">{{media.title}}</ion-card-title>
             </ion-card-header>
           </ion-card>
         </ion-col>
-        <ion-col size-sm="12" size-md="3">
-            <ion-card>
-              <vg-player>
-                <vg-overlay-play></vg-overlay-play>
-                <vg-buffering></vg-buffering>
-                <!-- <vg-scrub-bar>
-                  <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
-                  <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
-                </vg-scrub-bar> -->
-                <vg-controls>
-                  <!-- <vg-playback-button></vg-playback-button> -->
-                  <!-- <vg-play-pause></vg-play-pause> -->
-                  <!-- <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
-                  <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
-                  <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
-                  <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display> -->
-                  <!-- <vg-track-selector></vg-track-selector> -->
-                  <!-- <vg-mute></vg-mute> -->
-                  <!-- <vg-volume></vg-volume> -->
-                  <!-- <vg-fullscreen></vg-fullscreen> -->
-                </vg-controls>
-                <video [vgMedia]="$any(media)" #media id="singleVideo" preload="auto" crossorigin>
-                  <source src="assets/brandnewDay.mp4" >
-                  <!-- <source src="http://static.videogular.com/assets/videos/videogular.ogg" type="video/ogg"> -->
-                  <!-- <source src="http://static.videogular.com/assets/videos/videogular.webm" type="video/webm"> -->
-                  <!-- <track kind="subtitles" label="English" src="http://static.videogular.com/assets/subs/pale-blue-dot.vtt"
-                    srclang="en" default>
-                  <track kind="subtitles" label="Español" src="http://static.videogular.com/assets/subs/pale-blue-dot-es.vtt"
-                    srclang="es"> -->
-                </video>
-              </vg-player>
-              <ion-card-header>
-                <ion-card-title>Madison, WI</ion-card-title>
-              </ion-card-header>
-            </ion-card>
-        </ion-col>
-        <ion-col size-sm="12" size-md="3">
-          <ion-card>
-            <img src="assets/ewu.jpg" />
-            <ion-card-header>
-              <ion-card-title>Madison, WI</ion-card-title>
-            </ion-card-header>
-          </ion-card>
-        </ion-col>
-        <ion-col size-sm="12" size-md="3">
-          <ion-card>
-            <img src="assets/ewu.jpg" />
-            <ion-card-header>
-              <ion-card-title>Madison, WI</ion-card-title>
-            </ion-card-header>
-          </ion-card>
-        </ion-col>
-        <ion-col size-sm="12" size-md="3">
-          <ion-card>
-            <img src="assets/ewu.jpg" />
-            <ion-card-header>
-              <ion-card-title>Madison, WI</ion-card-title>
-            </ion-card-header>
-          </ion-card>
-        </ion-col>
-        <ion-col size-sm="12" size-md="3">
-          <ion-card>
-            <img src="assets/ewu.jpg" />
-            <ion-card-header>
-              <ion-card-title>Madison, WI</ion-card-title>
-            </ion-card-header>
-          </ion-card>
-        </ion-col>
-        <ion-col size-sm="12" size-md="3">
-          <ion-card>
-            <img src="assets/ewu.jpg" />
-            <ion-card-header>
-              <ion-card-title>Madison, WI</ion-card-title>
-            </ion-card-header>
-          </ion-card>
-        </ion-col>
-        <ion-col size-sm="12" size-md="3">
-          <ion-card>
-            <img src="assets/ewu.jpg" />
-            <ion-card-header>
-              <ion-card-title>Madison, WI</ion-card-title>
-            </ion-card-header>
-          </ion-card>
-        </ion-col>
-        <ion-col size-sm="12" size-md="3">
-          <ion-card>
-            <img src="assets/ewu.jpg" />
-            <ion-card-header>
-              <ion-card-title>Madison, WI</ion-card-title>
-            </ion-card-header>
-          </ion-card>
-        </ion-col>
-  
-        <ion-col size-sm="12" size-md="3">
-          <ion-card>
-            <img src="assets/ewu.jpg" />
-            <ion-card-header>
-              <ion-card-title>Madison, WI</ion-card-title>
-            </ion-card-header>
-          </ion-card>
-        </ion-col>
-        <ion-col size-sm="12" size-md="3">
-          <ion-card>
-            <img src="assets/ewu.jpg" />
-            <ion-card-header>
-              <ion-card-title>Madison, WI</ion-card-title>
-            </ion-card-header>
-          </ion-card>
-        </ion-col>
-        <ion-col size-sm="12" size-md="3">
-          <ion-card>
-            <img src="assets/ewu.jpg" />
-            <ion-card-header>
-              <ion-card-title>Madison, WI</ion-card-title>
-            </ion-card-header>
-          </ion-card>
-        </ion-col>
-        <ion-col size-sm="12" size-md="3">
-          <ion-card>
-            <img src="assets/ewu.jpg" />
-            <ion-card-header>
-              <ion-card-title>Madison, WI</ion-card-title>
-            </ion-card-header>
-          </ion-card>
-        </ion-col>
+ 
         </ion-row>
         </ion-grid>
 

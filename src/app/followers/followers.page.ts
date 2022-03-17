@@ -4,62 +4,60 @@ import { combineLatest, Subject, throwError } from 'rxjs';
 import { catchError, map, startWith, tap } from 'rxjs/operators';
 import { MediaService } from '../media/media.service';
 
+
 @Component({
-  selector: 'app-gallary',
-  templateUrl: './gallary.page.html',
-  styleUrls: ['./gallary.page.scss'],
+  selector: 'app-followers',
+  templateUrl: './followers.page.html',
+  styleUrls: ['./followers.page.scss'],
 })
-export class GallaryPage implements OnInit {
-  search = false
+export class FollowersPage implements OnInit {
 
+  currentUser = ''
   col = 'All'
-  totalPoints = 0
-  errormsg = ''
   plainSearch = ''
-
+  search = false
+  errormsg = ''
   User$ = this._ms.getUser().pipe(
-    map(x =>{
-      x.media.forEach(media => {
-        this.totalPoints += media.downloads
+    map(x => {
+      let arr = []
+      let res = x.following
+      res.forEach(element => {
+        element.media.forEach(ele => {
+          arr.push(ele)
+        });
       });
-      this.totalPoints *= 10
-      return x
+
+      return arr
     }),
-    tap(x => console.log(x, 'from users ooooo tom')),
     catchError(err => {
       if(err.message === "Unauthorized"){
         this.errormsg = 'you are not logged In';
       }
       return throwError(err)
     })
+   
   )
 
   private searchedptn = new Subject<string>();
   insertedSearchedptn$ = this.searchedptn.asObservable();
 
   allMediaWithSearch$ = combineLatest([
-    this.User$.pipe(
-      map(x => {
-        return x.media
-      })
-    ),
+    this.User$,
     this.insertedSearchedptn$.pipe(
       startWith('')
     )
   ]).pipe(
     map(([media, md]) => {
-      if(this.plainSearch){
-        this.col = 'All'
-        return media.filter((i: { description: string; }) => md ?  i.description.includes(md) : true)
-      }
       if(md === 'All') return [...media]
       return media.filter((i: { Mediatype: string; }) => md ?  i.Mediatype === md : true)
     })
   )
-  constructor(private _ms: MediaService, private _router:Router) { }
+  constructor(private _ms:MediaService, private _router:Router) { }
 
   ngOnInit() {
   }
+
+ 
 
   toggleInput(){
     if(this.search){
@@ -71,17 +69,18 @@ export class GallaryPage implements OnInit {
   plain(event){
     this.searchedptn.next(this.plainSearch)
   }
-  
+
+
   fire(data){
+    this.plainSearch = ''
     this.col = data
     this.searchedptn.next(data)
   }
 
-  route(data, id){
-    data = data.media.filter(x => x.id ===id)[0]
+
+  route(data){
     
-    // data.dislikes = data.media[0].dislikes
-    this._router.navigateByUrl('/folder/detail', {state: {data, me:true}})
+    this._router.navigateByUrl('/folder/detail', {state: {data, me:false}})
 
   }
 

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Storage } from '@ionic/storage-angular';
+import * as CordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -11,8 +14,15 @@ export class AppComponent {
     { title: 'Gallary', url: '/folder/gallary', icon: 'paper-plane' },
     { title: 'Favorites', url: 'folder/favourites', icon: 'heart' },
     { title: 'Settings', url: '/folder/settings', icon: 'archive' },
+    { title: 'Following', url: '/folder/followers', icon: 'archive' },
     { title: this.login, url: '/folder/login', icon: 'trash' },
-    { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
   ];
-  constructor() {}
+  constructor(private storage:Storage) {this.init()}
+
+
+  async init() {
+    await this.storage.defineDriver(CordovaSQLiteDriver);
+    await this.storage.create();
+    }
+    
 }

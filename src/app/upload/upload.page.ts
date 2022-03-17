@@ -33,6 +33,7 @@ export class UploadPage implements OnInit {
   }
 
   upload(){
+    
 
     if(this.isValid && this.mediaCredentials.file){
       const formdata = new FormData()
@@ -45,19 +46,13 @@ export class UploadPage implements OnInit {
         res => {
           console.log(res)
         },
-        err => this.errormsg = err
+        err => this.errormsg = err.message
       )
     }else{
       this.errormsg = 'invalid credentials'
     }
-    console.log(this.getAllMedia())
   
   }
 
-  getAllMedia(){
-   return this._ms.getAllMedia().subscribe(
-      res => console.log(res),
-      err => console.log(err, 'from error oo eeii')
-    )
-  }
+
 }

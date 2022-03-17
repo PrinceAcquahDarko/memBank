@@ -4,8 +4,45 @@ ion-grid{
     // height:250px;
 }
 
+p{
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0px;
+  color: #9aa0a6;  
+  text-align: center;
+}
+
+
+
+.errors{
+  text-align: center;
+  width:100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.errors > div{
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0px;
+  color: #9aa0a6;  
+}
+
+
+
 ion-toolbar.ios{
     --background:#202124;
+  }
+
+  ul > li:hover{
+    color:#fff;
+  }
+  
+  .active{
+    color:#428cff !important;
+    text-decoration: underline;
   }
 
   
@@ -13,9 +50,7 @@ ion-toolbar.ios{
     color:#fff
   }
 
-  .mobSearch{
-    display:none;
-  }
+  
   ion-toolbar > div{
     width:90%;
     margin:auto;
@@ -52,6 +87,10 @@ ion-toolbar.ios{
     cursor: pointer;
   }
 
+  .mobSearch{
+    display: none;
+  }
+
 .Container{
     display: flex;
     justify-content: center;
@@ -84,7 +123,7 @@ ion-toolbar.ios{
 
 .secondgrid{
     width:100%;
-    height: 380px;
+    height:300px;
     overflow-y: scroll;
 }
 
@@ -143,8 +182,29 @@ ion-card-title{
         display: none;
       }
       .mobSearch{
-        display:block;
         margin-top:4px;
+        width:100%;
+        display:flex !important;
+        justify-content: space-between;
+      }
+    
+    
+      .cancel{
+        color:red;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    
+      }
+
+      ion-card {
+        height:250px;
+        width:100% !important;
+        // margin:auto;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-top: auto;
+        margin-bottom:auto;
       }
   
     
@@ -164,6 +224,11 @@ ion-card-title{
   
     ion-title.ios{
       font-size: 18px;
+  }
+
+  .mobInput{
+    color: #9aa0a6;
+    font-size:0.8em;
   }
   
     ion-title.md{
@@ -185,6 +250,8 @@ ion-card-title{
       color: #9aa0a6;
       font-weight: 600;
     }
+
+    
   
   
   

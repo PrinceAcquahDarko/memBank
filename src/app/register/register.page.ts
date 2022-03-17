@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
+import { Storage } from '@ionic/storage-angular';
 
 
 function passwordMatcher(c: AbstractControl): { [key:string]: boolean } | null {
@@ -39,7 +40,7 @@ export class RegisterPage implements OnInit {
     }, {validators: passwordMatcher}),
 
   })
-  constructor(private fb: FormBuilder,private _router:Router, private _as: AuthService) { }
+  constructor(private fb: FormBuilder,private _router:Router, private _as: AuthService, private _storage:Storage) { }
 
   ngOnInit() {
   }
@@ -51,6 +52,7 @@ export class RegisterPage implements OnInit {
       this._as.registerUser(data).subscribe(
         res => {
           console.log(res)
+          this._storage.set('token', res.accesstoken)
         },
         err => {
           this.show = false

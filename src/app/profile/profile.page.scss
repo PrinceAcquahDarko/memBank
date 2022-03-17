@@ -119,8 +119,13 @@ ion-card-title{
     width: 50px;
   }
 
+  .active{
+    color:#428cff !important;
+    text-decoration: underline;
+  }
 
-  @media only screen and (max-width: 915px) {
+
+  @media only screen and (max-width: 800px) {
     
   
     ul{
@@ -143,8 +148,15 @@ ion-card-title{
         display: none;
       }
       .mobSearch{
-        display:block;
+        display:flex;
         margin-top:4px;
+      }
+
+      .cancel{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color:red;
       }
   
     

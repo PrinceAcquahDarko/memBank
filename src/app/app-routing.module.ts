@@ -42,6 +42,10 @@ const routes: Routes = [
   {
     path: 'folder/upload',
     loadChildren: () => import('./upload/upload.module').then( m => m.UploadPageModule)
+  },
+  {
+    path: 'folder/followers',
+    loadChildren: () => import('./followers/followers.module').then( m => m.FollowersPageModule)
   }
 ];
 

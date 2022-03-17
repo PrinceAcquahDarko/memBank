@@ -92,8 +92,13 @@ ion-card {
 
 ion-card > img{
   width:100%;
-  height: 200px
+  height: 200px;
+  // object-fit: cover;
+  // object-position: 100% 0%;
+
 }
+
+
 
 
 ion-content.md{
@@ -116,14 +121,81 @@ vg-overlay-play{
   width: 50px;
 }
 
+ul > li:hover{
+  color:#fff;
+}
 
-@media only screen and (max-width: 915px) {
+.active{
+  color:#428cff !important;
+  text-decoration: underline;
+}
+
+.notActive{
+  color:yellow
+}
+
+.end{
+  display: flex;
+}
+
+.errors{
+  text-align: center;
+  width:100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.errors > div{
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0px;
+  color: #9aa0a6;  
+}
+
+@media only screen and (max-width: 700px) {
   .header{
     display: none;
   }
   .mobSearch{
-    display:block;
-    margin-top:4px;
+    width:100%;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    // margin-top:-30px !important;
+  }
+
+  .mobInput{
+    padding: 17px !important;
+    margin-bottom: -10px;
+    color: #9aa0a6;
+    font-size:0.8em;
+
+    // padding-top: 20px !important;
+  }
+
+  ion-input{
+    width: 90%;
+    height:20px;
+  }
+
+  .cancel{
+    color:red;
+    margin-left:20px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:10px;
+    
+    // margin-top:20px;
+  }
+
+  
+
+  ion-icon{
+    padding-left:0;
+    padding-right: 5px;
   }
 
  
@@ -191,6 +263,14 @@ vg-overlay-play{
   .head.ios{
     padding-top:2em
   }
+
+  .mobInput.ios{
+
+    padding: 15px !important
+  }
+
+
+
 
 
 

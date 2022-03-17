@@ -18,6 +18,23 @@ vg-player {
     height: 400px;
 }
 
+.imgContainer{
+    width:100%;
+    height: 400px;
+}
+
+img{
+    width: 80%;
+    height:100%;
+    // object-fit: cover;
+    // object-position: 100% 0%;
+    display: block;
+    margin:auto;
+    margin-left: auto;
+    margin-right: auto;
+    // image-rendering: crisp-edges;
+}
+
 .info{
     display: flex;
     justify-content: space-evenly;
@@ -67,9 +84,20 @@ h3{
 }
 
 
+.like_active{
+    color:blue;
+}
+
+.dislike_active{
+    color:red;
+}
+
+.fav_active{
+    color:green
+}
 
 
-@media only screen and (max-width: 915px) {
+@media only screen and (max-width: 700px) {
     ion-card{
         width:100%;
         height: 280px;
@@ -77,7 +105,19 @@ h3{
 
     vg-player {
         width: 100%;
+        height: 100%;
+    }
+
+    .imgContainer{
         height: 200px;
+    }
+
+    img{
+        width: 100%;
+        height: 100%;
+        // object-fit: cover;
+        // object-position: 100% 0%;
+
     }
 
     .download{
