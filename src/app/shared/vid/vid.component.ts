@@ -11,7 +11,6 @@ export class VidComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.inputMedia)
   }
 
 }

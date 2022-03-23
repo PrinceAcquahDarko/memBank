@@ -23,6 +23,15 @@ ion-col > ion-input{
     margin-bottom: 1em;
   }
 
+  .passInfo{
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0px;
+    color: #9aa0a6;  
+    margin-bottom: 1em;
+
+  }
+
   .errmsg > span{
     color:red;
   }
@@ -51,6 +60,9 @@ ion-col > ion-input{
       color:#006efb
   }
 
+  ion-col > ion-input.ios{
+    padding:15px !important
+  }
   span{
     font-size: 0.8rem;
     font-weight: 600;

@@ -1,11 +1,5 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>MemBank</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-back-header></app-back-header>
+
 
 <ion-content>
   
@@ -17,18 +11,19 @@
       <ion-row>
         <ion-col size="12">
           <ion-label>Title</ion-label><br>
-          <ion-input  #usernameField = 'ngModel' [(ngModel)]="mediaCredentials.title" name="titleField" required type="text"></ion-input>
+          <ion-input  #usernameField = 'ngModel' [(ngModel)]="mediaCredentials.title" name="titleField" required type="text" placeholder="a brief title....can be name"></ion-input>
 
         </ion-col>
           <ion-col size="12" >
             <ion-label>Description</ion-label><br>
-          <ion-input #description = 'ngModel' [(ngModel)]="mediaCredentials.description" required type="text" name="description"></ion-input>
+            <ion-textarea rows="6" cols="20" #description = 'ngModel' [(ngModel)]="mediaCredentials.description" required name="description" placeholder="Enter detailed description about the item can contain title and words in the item..."></ion-textarea>
+          <!-- <ion-input #description = 'ngModel' [(ngModel)]="mediaCredentials.description" required type="text" name="description"></ion-input> -->
 
 
         </ion-col>
         
       <ion-col size="12" >
-        <label for="fileI" class="custom-label">{{label}}</label>
+        <label *ngIf="showLabel" for="fileI" class="custom-label">{{label}}</label>
        <input id="fileI" type="file"   name="pic" (change) ="selectImage($event)">
       <!-- <small *ngIf="registerForm.get('email')?.errors?.required && registerForm.get('email')?.touched">email is required</small> -->
 
@@ -37,9 +32,35 @@
       <div class="bttn">
         <ion-button  mode="md" type='submit' >
           <ion-spinner name="lines-small"  *ngIf='show'></ion-spinner>
-          Upload</ion-button>
+          {{btnText}}</ion-button>
     </div>
   
     </form>
     </ion-grid>
+
+    <ion-modal [isOpen] = "openModal">
+      <ng-template >
+        <ion-content>
+          <p> trying to add any of these?</p>
+      
+          
+          <ion-grid class="secondgrid">
+            <ion-col *ngFor="let media of foundMedia " sizeXs="12" sizeSm="6">
+              <ion-card >
+                <img *ngIf="media.Mediatype === 'image'" [src]="media.link" />
+                <app-vid [inputMedia] = media *ngIf="media.Mediatype === 'video'"></app-vid>
+                <ion-card-header>
+                  <ion-card-title (click)="route(media)">{{media.title}}</ion-card-title>
+                </ion-card-header>
+              </ion-card>
+            </ion-col>
+
+            <div class="btns">
+              <ion-button (click) = "continue()">Continue?</ion-button>
+              <ion-button (click) = "cancel()">Cancel</ion-button>
+            </div>
+              </ion-grid>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
 </ion-content>

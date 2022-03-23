@@ -14,7 +14,6 @@ export class MediaService {
 
     getAllMedia(): Observable<any> {
       if(this.cache['allMedia']){
-        console.log('fetchng from cache')
         return of(this.cache['allMedia'])
       }
       return this.http
@@ -27,53 +26,72 @@ export class MediaService {
         );
     }
 
-    uploadMedia(data:any){
+    uploadMedia(data:any, description:string){
+
       if(this.cache['allMedia']){
-        this.cache['allMedia'] = ''
-        
+        let all = this.cache['allMedia']
+
+       let media = all.filter(x =>x.description.includes(description) || description.includes(x.description))
+       let res = {foundMedia:true, media}
+       if(media.length){
+         return of(res)
+       }
       }
+    
+      return this.http
+      .post<any>(this.url + '/media', data)
+      .pipe(catchError(this.handleError));
+    }
+
+    continueUploadMedia(data:any){
+    
       return this.http
       .post<any>(this.url + '/media', data)
       .pipe(catchError(this.handleError));
     }
 
     updateLikes(data:any){
-      console.log(data)
       return this.http
       .post<any>(this.url + '/user/likes', data)
       .pipe(catchError(this.handleError));
     }
 
     rmLikes(data:any){
-      console.log(data)
       return this.http
       .post<any>(this.url + '/user/removelikes', data)
       .pipe(catchError(this.handleError));
     }
 
     addDislikes(data:any){
-      console.log(data)
       return this.http
       .post<any>(this.url + '/user/adddislikes', data)
       .pipe(catchError(this.handleError));
     }
 
     rmDislikes(data:any){
-      console.log(data)
       return this.http
       .post<any>(this.url + '/user/removedislikes', data)
       .pipe(catchError(this.handleError));
     }
 
     addFav(data:any){
-      console.log(data)
+      this.cache['user'] = null
       return this.http
       .post<any>(this.url + '/user/addfav', data)
       .pipe(catchError(this.handleError));
     }
 
-    rmFav(data:any){
-      console.log(data)
+    getSingleMedia(id){
+      if(this.cache['allMedia']){
+        return this.cache['allMedia'].filter(i => i.id === id)[0]
+      }
+    }
+
+    rmFav(data:any, media){
+     
+       this.cache['user'] = null
+
+      
       return this.http
       .post<any>(this.url + '/user/removefav', data)
       .pipe(catchError(this.handleError));
@@ -98,6 +116,43 @@ export class MediaService {
       .pipe(catchError(this.handleError));
     }
 
+    unfollow(data){
+      return this.http
+      .post<any>(this.url + '/user/unfollow', data)
+      .pipe(catchError(this.handleError));
+    }
+
+    deleteMedia(id){
+      return this.http
+      .delete<any>(this.url +  `/media/${id}`)
+      .pipe(catchError(this.handleError));
+    }
+
+    updateMedia(id, data){
+      return this.http
+      .patch<any>(this.url +  `/media/${id}`, data)
+      .pipe(catchError(this.handleError));
+    }
+
+
+    getMediaUser(id){
+      return this.http
+      .get<any>(this.url +  `/user/mediaUser/${id}`)
+      .pipe(catchError(this.handleError));
+    }
+
+    downloadfile(url:string):Observable<Blob>{
+      return this.http.get(url, {
+        responseType: 'blob'
+      })
+    }
+
+    updateDownloads(id:number):Observable<any>{
+      return this.http
+      .get<any>(this.url +  `/user/download/${id}`)
+      .pipe(catchError(this.handleError));
+    }
+
 
 
 
@@ -106,10 +161,8 @@ export class MediaService {
       let message = '';
   
       if (err.error instanceof ErrorEvent) {
-        console.log(err, 'from an instance');
         message = `an error occured: ${err.error.message}`;
       } else {
-        console.log(err, 'from not an instance');
         message = err.error;
       }
   

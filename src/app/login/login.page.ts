@@ -32,8 +32,8 @@ export class LoginPage implements OnInit {
       this.show = true;
       this._as.loginUser(this.userCredentials).subscribe(
         (res) => {
-          console.log(res);
           this._storage.set('token', res.accesstoken)
+          this._router.navigateByUrl('folder/upload')
         },
         (err) => {
           this.errormsg = err.message;

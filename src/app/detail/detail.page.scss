@@ -9,6 +9,11 @@ ion-card{
     display:none
 }
 
+ion-spinner{
+    width:20px !important;
+    height: 10px !important;
+}
+
 .down{
     cursor: pointer;
 }
@@ -93,7 +98,7 @@ h3{
 }
 
 .fav_active{
-    color:green
+    color:red
 }
 
 

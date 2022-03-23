@@ -5,16 +5,16 @@
     <ion-grid *ngIf="User">
       <ion-row>
         <ion-col sizeXs="12" sizeMd="5" class="Container" >
-          <img [src]="User.profilepic ? User.profilepic : 'assets/profilepic.png' " alt="User.firstName">
+          <img [src]="User.link ? User.link : 'assets/profilepic.png' " alt="User.firstName">
         </ion-col>
         <ion-col sizeXs="12" sizeMd="7" class="Container"  >
           <div>
             <h3>{{User.firstName}} {{User.lastName}}</h3>
             <div class="following">
-              <div>{{User.followedBy.length}} followers</div>
-              <div>{{User.following.length}} following</div>
+              <div class="stats" (click)="followedBy(User.followedBy, User.id)">{{User.followedBy.length}} {{User.followedBy.length === 1 ? 'follower' : 'followers'}}</div>
+              <div class="stats" (click)="followingList(User.following, User.id)">{{User.following.length}} following</div>
             </div>
-            <ion-button (click) = "follow()">{{following ? 'following' : 'follow Me'}}</ion-button>
+            <ion-button fill="outline" (click) = "follow()">{{following ? 'following' : 'follow'}}</ion-button>
           </div>
         
         </ion-col>
@@ -54,7 +54,7 @@
       <ion-row>
         <ion-col *ngFor="let media of User.media" size-sm="12" size-md="3">
           <ion-card >
-            <img *ngIf="media.Mediatype === 'image'" [src]="media.link" />
+            <img *ngIf="media.Mediatype === 'image' || media.Mediatype === 'gif'" [src]="media.link" />
             <app-vid [inputMedia] = media *ngIf="media.Mediatype === 'video'"></app-vid>
             <ion-card-header>
               <ion-card-title (click)="route(media)">{{media.title}}</ion-card-title>

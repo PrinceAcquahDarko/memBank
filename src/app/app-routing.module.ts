@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { CanActivateGuard } from './can-activate.guard';
 
 const routes: Routes = [
   {
@@ -40,12 +41,24 @@ const routes: Routes = [
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
   {
-    path: 'folder/upload',
+    path: 'folder/upload', canActivate: [CanActivateGuard],
     loadChildren: () => import('./upload/upload.module').then( m => m.UploadPageModule)
   },
   {
     path: 'folder/followers',
     loadChildren: () => import('./followers/followers.module').then( m => m.FollowersPageModule)
+  },
+  {
+    path: 'follwers-list',
+    loadChildren: () => import('./follwers-list/follwers-list.module').then( m => m.FollwersListPageModule)
+  },
+  {
+    path: 'folder/confirm-pass',
+    loadChildren: () => import('./confirm-pass/confirm-pass.module').then( m => m.ConfirmPassPageModule)
+  },
+  {
+    path: 'following-list',
+    loadChildren: () => import('./following-list/following-list.module').then( m => m.FollowingListPageModule)
   }
 ];
 

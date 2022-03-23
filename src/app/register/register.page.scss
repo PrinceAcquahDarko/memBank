@@ -38,6 +38,19 @@ ion-input{
     margin-bottom: 1em;
   }
 
+  .passInfo{
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0px;
+    color: #9aa0a6;  
+    margin-bottom: 1em;
+
+  }
+
+  ion-col > ion-input.ios{
+    padding:15px !important
+  }
+
   .errmsg > span{
     color:red;
   }

@@ -9,35 +9,36 @@
         <ion-row>
           <ion-col sizeXs="12" sizeMd="6">
             <ion-label>First Name</ion-label><br>
-           <ion-input #firstname = 'ngModel' [(ngModel)]="credentials.firstname" required name="firstname"></ion-input>
+           <ion-input #firstname = 'ngModel' [(ngModel)]="credentials.firstName" required name="firstname"></ion-input>
 
         </ion-col>
         <ion-col sizeXs="12" sizeMd="6">
           <ion-label>Last Name</ion-label><br>
-          <ion-input #lastname = 'ngModel' [(ngModel)]="credentials.lastname" required name="lastname"></ion-input>
+          <ion-input #lastname = 'ngModel' [(ngModel)]="credentials.lastName" required name="lastname"></ion-input>
 
         </ion-col>
       </ion-row>
       <ion-row >
             
-        <ion-col sizeXs="12" sizeMd="6">
-          <ion-label>Password</ion-label><br>
-          <ion-input  type="password" #password = 'ngModel' [(ngModel)]="credentials.password"  name="password"></ion-input>
-        </ion-col>
+       
         <ion-col sizeXs="12" sizeMd="6">
           <ion-label>Email</ion-label>
          <ion-input  type="email" #email = 'ngModel' [(ngModel)]="credentials.email" required name="email"></ion-input>
 
       </ion-col>
-   
-      </ion-row>
 
       <ion-col sizeXs="12" sizeMd="6">
         <label for="fileI" class="custom-label">{{label}}</label>
-       <input id="fileI" type="file"  name="pic" (change) ="selectImage($event)">
-      <!-- <small *ngIf="registerForm.get('email')?.errors?.required && registerForm.get('email')?.touched">email is required</small> -->
+        <input id="fileI" type="file"  name="pic" (change) ="selectImage($event)"  name="password">
+      </ion-col>
+   
+      </ion-row>
 
-    </ion-col>
+      <!-- <ion-col sizeXs="12" sizeMd="6">
+        <label for="fileI" class="custom-label">{{label}}</label>
+       <input id="fileI" type="file"  name="pic" (change) ="selectImage($event)">
+
+    </ion-col> -->
         <div class="bttn">
           <ion-button type='submit' [disabled] = "form.invalid">Update</ion-button>
       </div>
@@ -45,6 +46,55 @@
       </ion-grid>
     <!-- </ion-card> -->
   </div>
+
+<div>
+  
+  <ion-grid>
+    <div class="passInfo">
+   
+      <span >{{passerrormsg}}</span>
+    </div>
+    <form [formGroup] ="updateForm" (ngSubmit)= "updatePassword()">
+    <ion-row>
+          
+            <ion-row class="row" formGroupName="passwordGroup">
+            
+              <ion-col size="12" >
+                <ion-label>New Password</ion-label><br>
+                <ion-input formControlName="password" type="password"></ion-input>
+                <small *ngIf="updateForm.get('passwordGroup.password')?.errors?.required && updateForm.get('passwordGroup.password')?.touched">password is required</small>
+                <small *ngIf="updateForm.get('passwordGroup.password')?.errors?.minlength && updateForm.get('passwordGroup.password')?.touched">password must be six characters or more</small>
+              </ion-col>
+              <ion-col size="12">
+                <ion-label>Confirm Password</ion-label><br>
+                 <ion-input formControlName="confirmPassword" type="password"></ion-input>
+               <small *ngIf="updateForm.get('passwordGroup.confirmPassword')?.errors?.required && updateForm.get('passwordGroup.confirmPassword')?.touched">Confirm password is required</small>
+                <small *ngIf="updateForm.get('passwordGroup.confirmPassword')?.errors?.minlength && updateForm.get('passwordGroup.confirmPassword')?.touched">password must be six characters or more</small>
+                <small *ngIf="updateForm.get('passwordGroup')?.errors?.match">Passwords do not match</small>
+            </ion-col>
+          </ion-row>
+             
+           
+          
+        </ion-row>
+        <div class="bttn">
+          <ion-button type='submit'  [disabled] ="updateForm.invalid">
+        <ion-spinner name="lines-small" *ngIf='show'></ion-spinner>
+
+            Update</ion-button>
+      </div>
+      </form>
+  </ion-grid>
+</div>
+  <div>
+
+  </div>
+
+  <ion-fab *ngIf="user" (click)="logout()" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="danger" >
+      <ion-icon class="plus" name="log-out"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
  
    
 </ion-content>

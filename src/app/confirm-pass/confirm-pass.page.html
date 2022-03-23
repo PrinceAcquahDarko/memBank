@@ -1,0 +1,30 @@
+<app-back-header></app-back-header>
+
+
+
+<ion-content>
+  <ion-grid>
+    <div class="passInfo">
+      {{enterPass}}
+    </div>
+    <div class="errmsg">
+      <span >{{errormsg}}</span>
+    </div>
+    <form #form="ngForm" (ngSubmit)="submitPass()">
+      <ion-row>
+      
+          <ion-col size="12" >
+            <ion-label>Password</ion-label><br>
+          <ion-input #password = 'ngModel' [(ngModel)]="userCredentials.password" required type="password" name="password"></ion-input>
+
+
+        </ion-col>
+      </ion-row>
+      <div class="bttn">
+        <ion-button mode="md" type='submit' >
+          <ion-spinner name="lines-small"  *ngIf='show'></ion-spinner>
+          submit</ion-button>
+    </div>
+    </form>
+    </ion-grid>
+</ion-content>

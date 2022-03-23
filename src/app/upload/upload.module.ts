@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { UploadPageRoutingModule } from './upload-routing.module';
 
 import { UploadPage } from './upload.page';
+import { SharedModule } from '../shared/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    UploadPageRoutingModule
+    UploadPageRoutingModule,
+    SharedModule
   ],
   declarations: [UploadPage]
 })

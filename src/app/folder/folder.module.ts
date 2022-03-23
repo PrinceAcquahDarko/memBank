@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { StringTransformPipe } from '../stringTransform.pipe';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -19,6 +20,6 @@ import { SharedModule } from '../shared/shared/shared.module';
     FolderPageRoutingModule,
     SharedModule
   ],
-  declarations: [FolderPage]
+  declarations: [FolderPage, StringTransformPipe]
 })
 export class FolderPageModule {}

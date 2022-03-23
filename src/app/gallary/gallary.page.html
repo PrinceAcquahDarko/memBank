@@ -12,8 +12,8 @@
           <div>
             <h3>{{user.firstName}} {{user.lastName}}</h3>
             <div class="following">
-              <div>{{user.followedBy.length}} followers</div>
-              <div>{{user.following.length}} following</div>
+              <div class="stats" (click)="followedBy(user.followedBy, user.id)">{{user.followedBy.length}} {{user.followedBy.length === 1 ? 'follower' : 'followers'}}</div>
+              <div class="stats" (click)="followingList(user.following, user.id)" >{{user.following.length}} following</div>
             </div>
             <h4>Total points: {{totalPoints}}</h4>
           </div>
@@ -60,7 +60,7 @@
         <ion-col *ngFor="let media of allMediaWithSearch$ | async" sizeXs="12" sizeMd="3">
           
           <ion-card >
-            <img *ngIf="media.Mediatype === 'image'" [src]="media.link" />
+            <img *ngIf="media.Mediatype === 'image' || media.Mediatype === 'gif' " [src]="media.link" />
             <app-vid [inputMedia] = media *ngIf="media.Mediatype === 'video'"></app-vid>
             <ion-card-header>
               <ion-card-title (click)="route(user, media.id)">{{media.title}}</ion-card-title>

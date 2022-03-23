@@ -40,10 +40,12 @@ ion-col > ion-input{
   }
 
   .custom-label{
-    margin-top:1em;
+    margin-top:2em;
     border:1px solid #ccc;
     display: inline-block;
     padding:6px 6px;
+    width:30%;
+
     cursor: pointer
 }
 
@@ -62,13 +64,36 @@ input[type="file"]{
 
   }
 
-  label{
-    width:40%
+  ion-col > ion-input.ios{
+    padding:15px !important
   }
 
+  small{
+    color:red;
+
+  }
+  .passInfo{
+    margin-bottom: 1em;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0px;
+    color: #9aa0a6;
+  }
+
+ 
   @media only screen and (max-width: 800px) {
     ion-card{
        width:100%;
+    }
+
+    .custom-label{
+      margin-top: 1em;
+      width: 40%;
+    }
+
+    ion-fab-button{
+      width:40px;
+      height:40px;
     }
 
     ion-grid{

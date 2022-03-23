@@ -1,6 +1,18 @@
 vg-controls{
     display:flex;
-    justify-content: center;
+    // justify-content: center;
+  }
+
+  vg-scrub-bar{
+    width:100% !important;
+  }
+
+  vg-time-display{
+    font-size: 0.7em;
+  }
+  .play{
+    // width:20px !important;
+    color:yellow;
   }
   
   

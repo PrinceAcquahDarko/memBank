@@ -7,7 +7,7 @@
       <ion-col>
         <ion-card>
           <div class="imgContainer">
-            <img *ngIf="receivedMedia.Mediatype === 'image'" [src]="receivedMedia.link" />
+            <img *ngIf="receivedMedia.Mediatype === 'image' || receivedMedia.Mediatype === 'gif'" [src]="receivedMedia.link" />
             <app-big-vid *ngIf="receivedMedia.Mediatype === 'video'" [inputMedia]="receivedMedia"></app-big-vid>
           </div>
           <ion-card-header>
@@ -19,7 +19,7 @@
 
                 </div>
                 <div >
-                  <span class="fav" (click)="dislikes()"><ion-icon name="thumbs-down"></ion-icon> :</span>
+                  <span class="fav" (click)="dislikes()" ><ion-icon name="thumbs-down"></ion-icon> :</span>
 
                   <span [ngClass]= "{'dislike_active': dislikesColor}"> {{receivedMedia.dislikes.length}}</span>
                 </div>
@@ -28,22 +28,29 @@
 
                 </div>
                 <div>
-                  <span class="mob"><ion-icon name="download"></ion-icon> :</span>
+                  <span class="mob"><ion-icon name="cloud-download"></ion-icon> :</span>
 
                 <span class="mob">{{receivedMedia.downloads ? receivedMedia.downloads : 0}}</span>
                 </div>
                 <div >
-                  <span (click)="download()" class="mob down">download</span>
+                  <span (click)="download(receivedMedia)" class="mob down"><a >
+                <ion-spinner *ngIf="dshow" name="lines-small" ></ion-spinner>
+                    
+                    download</a></span>
                 </div>
               </div>
 
               <div class="download">
                 <div>
-                  <span><ion-icon name="download"></ion-icon> :</span>
+                  <span><ion-icon name="cloud-download"></ion-icon> :</span>
                   <span> {{receivedMedia.downloads ? receivedMedia.downloads : 0}}</span>
                 </div>
                 <div>
-                  <span (click)="download()" class="down">download</span>
+                  <span (click)="download(receivedMedia)"
+                   class="down"><a >
+                     download
+                     <ion-spinner *ngIf="dshow" name="lines-small" ></ion-spinner>
+                    </a></span>
                 </div>
               </div>
             </ion-card-title>
@@ -56,7 +63,7 @@
       <ion-grid class="meta">
         <ion-row>
           <ion-col sizeXs="12" sizeMd="8" class="picInfo">
-            <h3>{{receivedMedia.title}}</h3>
+            <h3>{{receivedMedia.title }}</h3>
             <p>{{receivedMedia.description}}</p>
           </ion-col>
           <ion-col sizeXs="12" sizeMd="4">
@@ -66,11 +73,14 @@
         </ion-row>
       </ion-grid>
 
-      <ion-grid class="options">
+      <ion-grid class="options" *ngIf="ifOwner && userId">
         <ion-row>
           <ion-col class="optionsCard">
-            <ion-button>Update</ion-button>
-            <ion-button>Delete</ion-button>
+            <ion-button (click) = "update()">
+              Update</ion-button>
+            <ion-button fill="outline" color="danger"  (click)="delete()">
+              <ion-spinner name="lines-small"  *ngIf='show'></ion-spinner>
+              Delete</ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

@@ -51,8 +51,9 @@ export class RegisterPage implements OnInit {
       let data = this.formatValue()
       this._as.registerUser(data).subscribe(
         res => {
-          console.log(res)
           this._storage.set('token', res.accesstoken)
+          this._router.navigateByUrl('folder/upload')
+
         },
         err => {
           this.show = false

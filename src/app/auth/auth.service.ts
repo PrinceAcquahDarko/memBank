@@ -41,15 +41,26 @@ export class AuthService {
   }
 
 
+  updateUser(data): Observable<any> {
+    return this.http
+      .patch<any>(this.url + '/user/updateUser', data)
+      .pipe(catchError(this.handleError));
+  }
+
+  updatepass(data): Observable<any> {
+    return this.http
+      .patch<any>(this.url + '/user/updatepass', data)
+      .pipe(catchError(this.handleError));
+  }
+
+
 
   handleError(err: HttpErrorResponse) {
     let message = '';
 
     if (err.error instanceof ErrorEvent) {
-      console.log(err, 'from an instance');
       message = `an error occured: ${err.error.message}`;
     } else {
-      console.log(err, 'from not an instance');
       message = err.error;
     }
 

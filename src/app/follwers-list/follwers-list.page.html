@@ -1,0 +1,21 @@
+<app-back-header></app-back-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-list-header> Followers </ion-list-header>
+
+    <ion-item *ngFor="let following of followers.data">
+      <ion-avatar slot="start">
+        <img [src]="following.link ? following.link : 'assets/profilepic.png'" />
+      </ion-avatar>
+      <ion-label class="stats" (click)="detail(following)">
+        <h2>{{following.firstName}} {{following.lastName}}</h2>
+        <p>{{following.followsyou ? 'follows you': ''}}</p>
+      </ion-label>
+      <ion-button *ngIf="!following.isUser" fill="outline" slot="end" (click)="follow(following)">{{following.followingUser ? 'following': 'follow'}}</ion-button>
+    </ion-item>
+
+    
+  </ion-list>
+</ion-content>

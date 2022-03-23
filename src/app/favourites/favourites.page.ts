@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { combineLatest, Subject, throwError } from 'rxjs';
 import { map, startWith, tap, catchError } from 'rxjs/operators';
@@ -25,8 +25,7 @@ export class FavouritesPage implements OnInit {
     this.User$.pipe(
       map(x => {
         return x.favourites
-      }),
-      tap(x => console.log(x))
+      })
       
     ),
     this.insertedSearchedptn$.pipe(
@@ -45,7 +44,10 @@ export class FavouritesPage implements OnInit {
     }),
     catchError(err => {
       if(err.message === "Unauthorized"){
-        this.errormsg = 'you are not logged In';
+        
+        this.errormsg = ' //  space for your added favs...';
+      }else{
+        this.errormsg = 'an unexpected error occured'
       }
       return throwError(err)
     })
@@ -60,6 +62,13 @@ export class FavouritesPage implements OnInit {
       }
     )
   }
+
+  ionViewWillEnter(){
+  this.User$ = this._ms.getUser()
+
+  }
+
+   
 
   toggleInput(){
     if(this.search){

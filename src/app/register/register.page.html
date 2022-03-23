@@ -2,10 +2,14 @@
 
 
 <ion-content>
-  <div class="errmsg">
-    <span >{{errormsg}}</span>
-  </div>
+ 
   <ion-grid>
+    <div class="passInfo">
+      Enter credentials to register
+    </div>
+    <div class="errmsg">
+      <span >{{errormsg}}</span>
+    </div>
     <form [formGroup] ="registerForm" (ngSubmit)= "registerUser()">
     <ion-row>
           

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { combineLatest, Subject, throwError } from 'rxjs';
 import { catchError, map, startWith, tap } from 'rxjs/operators';
+import { AuthService } from '../auth/auth.service';
 import { MediaService } from '../media/media.service';
 
 @Component({
@@ -25,12 +26,16 @@ export class GallaryPage implements OnInit {
       this.totalPoints *= 10
       return x
     }),
-    tap(x => console.log(x, 'from users ooooo tom')),
     catchError(err => {
       if(err.message === "Unauthorized"){
-        this.errormsg = 'you are not logged In';
+         this.errormsg = ' // your space, your uploaded media would be shown here';
+      }else{
+        this.errormsg = 'an unexpected error occured'
       }
+      
+
       return throwError(err)
+      
     })
   )
 
@@ -56,7 +61,7 @@ export class GallaryPage implements OnInit {
       return media.filter((i: { Mediatype: string; }) => md ?  i.Mediatype === md : true)
     })
   )
-  constructor(private _ms: MediaService, private _router:Router) { }
+  constructor(private _ms: MediaService, private _router:Router, private _as:AuthService) { }
 
   ngOnInit() {
   }
@@ -83,6 +88,16 @@ export class GallaryPage implements OnInit {
     // data.dislikes = data.media[0].dislikes
     this._router.navigateByUrl('/folder/detail', {state: {data, me:true}})
 
+  }
+
+  followedBy(data, id){
+    let info = {data,id}
+    this._router.navigateByUrl('/follwers-list', {state:info})
+  }
+
+  followingList(data, id){
+    let info = {data,id}
+    this._router.navigateByUrl('/following-list', {state:info})
   }
 
 }

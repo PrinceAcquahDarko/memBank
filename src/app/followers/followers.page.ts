@@ -31,7 +31,10 @@ export class FollowersPage implements OnInit {
     }),
     catchError(err => {
       if(err.message === "Unauthorized"){
-        this.errormsg = 'you are not logged In';
+        
+        this.errormsg = ' // see media of only those you follow here';
+      }else{
+        this.errormsg = 'an unexpected error occured'
       }
       return throwError(err)
     })
