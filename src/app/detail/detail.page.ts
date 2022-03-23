@@ -93,8 +93,6 @@ export class DetailPage implements OnInit {
     
     if(this.dislikesColor){
       this.dislikesColor = false;
-      // this.receivedMedia.dislikes.length -= 1
-      // alert('we removing from dislikes')
       this.receivedMedia.dislikes = this.receivedMedia.dislikes.filter(x => x !== this.obj.userId)
 
       this._ms.rmDislikes(this.obj)
@@ -102,15 +100,10 @@ export class DetailPage implements OnInit {
     this.likesColor = !this.likesColor
    
     if(this.likesColor){
-      //add to likes
-      // this.receivedMedia.likes.length += 
       this.receivedMedia.likes.push(this.obj.userId)
      
       this._ms.updateLikes(this.obj).subscribe()
-      // alert('we adding to likes')
     }else{
-      //remove from likes
-      // this.receivedMedia.likes.length -= 1
       this.receivedMedia.likes = this.receivedMedia.likes.filter(x => x !== this.obj.userId)
       this._ms.rmLikes(this.obj).subscribe()
     }
