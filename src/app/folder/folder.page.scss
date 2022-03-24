@@ -137,6 +137,7 @@ ul > li:hover{
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #202124;
 }
 
 .errors > div{
@@ -205,6 +206,8 @@ ul > li:hover{
 
   ul{
     width:100%;
+    display: flex;
+    justify-content: space-between;
     margin-left: -20px;
     margin-top:20px;
 
