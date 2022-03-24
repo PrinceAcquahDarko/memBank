@@ -121,7 +121,8 @@ export class FolderPage implements OnInit {
         if(info.update){
           this.updateMedia = true
         }
-      this.insertedmedia.next(info.media)
+      this.insertedmedia.next(info.media);
+      history.state.media = ''
     }
   
 

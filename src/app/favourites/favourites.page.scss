@@ -71,19 +71,8 @@ ion-menu-button {
     color: #9aa0a6;
     font-weight: 600;
   }
-  ::-webkit-scrollbar,
-  *::-webkit-scrollbar {
-  display: none;
-  }
-  
-  ion-content {
-   --offset-bottom: auto!important;
-   --overflow: hidden;
-   overflow: auto;
-   &::-webkit-scrollbar {
-     display: none;
-   }
-   }
+ 
+ 
   
    .head{
      position:fixed;

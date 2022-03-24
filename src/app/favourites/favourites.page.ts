@@ -63,10 +63,7 @@ export class FavouritesPage implements OnInit {
     )
   }
 
-  ionViewWillEnter(){
-  this.User$ = this._ms.getUser()
-
-  }
+ 
 
    
 
