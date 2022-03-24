@@ -137,7 +137,6 @@ ul > li:hover{
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #202124;
 }
 
 .errors > div{
@@ -214,7 +213,7 @@ ul > li:hover{
   }
 
   ul > li{
-    padding-left:8px;
+    padding:10px;
     margin-top: 6px;
     font-size: 14px;
     // min-height: 48px;
