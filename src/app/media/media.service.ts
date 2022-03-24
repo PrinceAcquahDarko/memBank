@@ -27,7 +27,7 @@ export class MediaService {
     }
 
     uploadMedia(data:any, description:string){
-
+  //here we check if the media  to be upload alreaady exists
       if(this.cache['allMedia']){
         let all = this.cache['allMedia']
 
@@ -37,14 +37,20 @@ export class MediaService {
          return of(res)
        }
       }
-    
+
+      //the checking ends here
+  
+      // this.cache['allMedia'] = ''
       return this.http
       .post<any>(this.url + '/media', data)
       .pipe(catchError(this.handleError));
     }
 
+   
+
     continueUploadMedia(data:any){
-    
+      // this.cache['allMedia'] = ''
+      
       return this.http
       .post<any>(this.url + '/media', data)
       .pipe(catchError(this.handleError));
@@ -81,9 +87,14 @@ export class MediaService {
       .pipe(catchError(this.handleError));
     }
 
-    getSingleMedia(id){
+    getSingleMedia(data){
       if(this.cache['allMedia']){
-        return this.cache['allMedia'].filter(i => i.id === id)[0]
+        let res =  this.cache['allMedia'].filter(i => i.id === data.id)[0]
+        if(res){
+          return res
+        }
+
+        return data
       }
     }
 

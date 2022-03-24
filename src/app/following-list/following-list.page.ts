@@ -78,6 +78,7 @@ export class FollowingListPage implements OnInit {
   async presentToastWithOptions(header, msg) {
     const toast = await this.toastController.create({
       header,
+      cssClass: 'my-custom-class',
       message:msg,
       icon: 'information-circle',
       position: 'top',

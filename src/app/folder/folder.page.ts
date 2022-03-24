@@ -74,6 +74,7 @@ export class FolderPage implements OnInit {
   async presentToastWithOptions(header, msg) {
     const toast = await this.toastController.create({
       header,
+      cssClass: 'my-custom-class',
       message:msg,
       icon: 'information-circle',
       position: 'top',
@@ -88,8 +89,13 @@ export class FolderPage implements OnInit {
   modifyProducts(meds: Imedia[], med: Imedia | number): Imedia[]{
     if (typeof(med) === 'object'){
       if(!this.updateMedia){
+         let res = meds.filter(x => x.id === med.id).length //checking because it duplicates when you click the back btn after uploading
+         if(!res){
           this.presentToastWithOptions('uploaded', 'media uploaded successfully')
           return [med, ...meds]
+         }
+         return 
+          
       }
 
 
@@ -116,14 +122,16 @@ export class FolderPage implements OnInit {
       }
     )
 
-    let info = history.state
+    let info = {...history.state}
+    
     if(info.media){
+      console.log(info.media)
         if(info.update){
           this.updateMedia = true
         }
       this.insertedmedia.next(info.media);
-      history.state.media = ''
     }
+
   
 
   }
@@ -156,6 +164,8 @@ export class FolderPage implements OnInit {
 
 
   route(data){
+    
+
     let info = {data, me:false}
     if(data.user.id === this.currentUser){
       info.me = true
@@ -164,6 +174,5 @@ export class FolderPage implements OnInit {
 
   }
 
-  //for backend change port and remove backend
 
 }

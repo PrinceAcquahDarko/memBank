@@ -51,6 +51,11 @@ ion-toolbar.md{
     color:white;
   }
 
+  my-custom-class{
+    color: #fff;
+    --background: #202124;
+  }
+
 
   ion-content.md, ion-content.ios{
     --background:#202124;

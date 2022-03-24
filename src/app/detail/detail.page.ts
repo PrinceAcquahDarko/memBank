@@ -40,7 +40,7 @@ export class DetailPage implements OnInit {
 
   ionViewWillEnter(){
       //want to interract with the main media rather
-    this.receivedMedia =   this._ms.getSingleMedia(this.receivedMedia.id)
+    this.receivedMedia =   this._ms.getSingleMedia(this.receivedMedia)
     this._ms.getUser().subscribe(
       res => {
         this.userId = res.id;
@@ -148,7 +148,7 @@ export class DetailPage implements OnInit {
     if(this.dislikesColor){
       //add to likes
       // this.receivedMedia.dislikes.length += 1
-      alert('we adding to dislikes')
+      // alert('we adding to dislikes')
       this.receivedMedia.dislikes.push(this.obj.userId)
       this._ms.addDislikes(this.obj).subscribe()
     }else{
@@ -156,7 +156,7 @@ export class DetailPage implements OnInit {
       // this.receivedMedia.dislikes.length -= 1
       this.receivedMedia.dislikes = this.receivedMedia.dislikes.filter(x => x !== this.obj.userId)
 
-      alert('we removing from dislikes')
+      // alert('we removing from dislikes')
       this._ms.rmDislikes(this.obj).subscribe()
     }
 
@@ -211,6 +211,7 @@ export class DetailPage implements OnInit {
     const toast = await this.toastController.create({
       header,
       message:msg,
+      cssClass: 'my-custom-class',
       icon: 'information-circle',
       position: 'top',
       duration: 4000,
@@ -230,7 +231,7 @@ export class DetailPage implements OnInit {
         this._router.navigateByUrl('/folder/home', {state: info})
       },
       err => {
-        alert('couldnt delete')
+        // alert('couldnt delete')
         this.show =false
       }
     )

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { AuthService } from '../auth/auth.service';
 import { MediaService } from '../media/media.service';
 
@@ -17,7 +18,7 @@ export class ProfilePage implements OnInit {
   currentUser = ''
   col = 'All'
   loggedInUserDetail;
-  constructor(private _router:Router, private _as:AuthService, private _ms:MediaService) { }
+  constructor(private _router:Router,  public toastController: ToastController, private _as:AuthService, private _ms:MediaService) { }
 
   ngOnInit() {
 
@@ -74,6 +75,21 @@ export class ProfilePage implements OnInit {
     this.search = !this.search
   }
 
+  async presentToastWithOptions(header, msg) {
+    const toast = await this.toastController.create({
+      header,
+      cssClass: 'my-custom-class',
+      message:msg,
+      icon: 'information-circle',
+      position: 'top',
+      duration: 4000,
+      mode:'ios',
+      animated:true
+
+    });
+    await toast.present();
+  }
+
   plain(event){
     this.col ='All'
     // this.User.media = this.User.media.filter(x => x.description === this.plainSearch)
@@ -91,7 +107,7 @@ export class ProfilePage implements OnInit {
   }
 
   follow(){
-    if(!this.currentUser) return alert('you must be logged In')
+    if(!this.currentUser) return this.presentToastWithOptions('follow', 'you must be logged In')
     let data = {
       person: this.User.id,
       followerId: this.currentUser
@@ -100,7 +116,7 @@ export class ProfilePage implements OnInit {
      this.User.followedBy.push(this.loggedInUserDetail)
      this.following = true
       return this._ms.follow(data).subscribe(
-        res => alert('followed')
+        res => this.presentToastWithOptions('followed', 'followed successfully')
       )
 
     
@@ -109,7 +125,7 @@ export class ProfilePage implements OnInit {
 
     this.following = false
     return this._ms.unfollow(data).subscribe(
-      res => alert('unfollowed')
+      res => this.presentToastWithOptions('unfollow', 'unfollowed successfully')
     )
     
 
