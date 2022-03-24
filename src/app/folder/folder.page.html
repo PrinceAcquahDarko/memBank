@@ -11,7 +11,7 @@
           </ion-input>
           <div class="cancel"><ion-icon name="close" (click)="toggleInput()"></ion-icon></div>
       </div>
-      <div  *ngIf="!search">
+      <div class="navCon"  *ngIf="!search">
         <!-- "col === 'All' ? 'active' : 'notActive' " -->
         <ul>
             <li [ngClass]= "{'active': col === 'All'}" (click)="fire('All')"  >ALL</li>
@@ -23,7 +23,7 @@
               <ion-icon name="search"></ion-icon>
               </ion-input>
             </li>
-          <li class="mobSearch">
+          <li class="smallSearch">
             <ion-icon  name="search" (click)="toggleInput()"></ion-icon>
 
           </li>
@@ -50,13 +50,13 @@
       </ion-col>
     
       </ion-row>
-      <ion-fab (click) = "upload()" vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button>
-          <ion-icon class="plus" name="add"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
+    
     </ion-grid>
-
+    <ion-fab (click) = "upload()" vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button>
+        <ion-icon class="plus" name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
     <ng-template #loadingOrError>
       <ng-container *ngIf="errormsg; else loading">
         <div  class="errors">

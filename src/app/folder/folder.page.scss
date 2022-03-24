@@ -148,7 +148,11 @@ ul > li:hover{
   color: #9aa0a6;  
 }
 
-@media only screen and (max-width: 700px) {
+.smallsearch{
+  display: none;
+}
+
+@media only screen and (max-width: 850px) {
   .header{
     display: none;
   }
@@ -158,6 +162,13 @@ ul > li:hover{
     justify-content: space-between;
     align-items: center;
     // margin-top:-30px !important;
+  }
+
+  .smallsearch{
+    display: block;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .mobInput{
@@ -203,23 +214,7 @@ ul > li:hover{
 
  
 
-  ul{
-    width:100%;
-    display: flex;
-    justify-content: space-between;
-    margin-left: -20px;
-    margin-top:20px;
-
-  }
-
-  ul > li{
-    padding:10px;
-    margin-top: 6px;
-    font-size: 14px;
-    // min-height: 48px;
-    color: #9aa0a6;
-    font-weight: 600;
-  }
+ 
 
   
 
@@ -247,6 +242,29 @@ ul > li:hover{
 
   ion-title.md{
     color:white;
+  }
+
+  .navCon{
+    width:100%;
+    text-align: center;
+  }
+
+  ul{
+    width:100%;
+    display: flex;
+    justify-content: space-between !important;
+    margin-left: -20px;
+    margin-top:20px;
+
+  }
+
+  ul > li{
+    padding:0.4em;
+    margin-top: 6px;
+    font-size: 14px;
+    // min-height: 48px;
+    color: #9aa0a6;
+    font-weight: 600;
   }
 
   ion-card-title.ios{

@@ -41,7 +41,7 @@
                 <ion-icon name="search"></ion-icon>
                 </ion-input>
               </li>
-            <li class="mobSearch">
+            <li class="smallsearch">
               <ion-icon  name="search" (click)="toggleInput()"></ion-icon>
   
             </li>
@@ -49,7 +49,7 @@
        
         </div>
 
-        <div *ngIf="!user.media.length">
+        <div class="nomedia" *ngIf="!user.media.length">
             <p>hmmmmmmmm nothing to show here... please upload as much media and come back later</p>
         </div>
         

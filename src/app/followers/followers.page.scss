@@ -148,7 +148,9 @@ ion-menu-button {
     color:yellow
   }
   
-  
+  .smallsearch{
+    display: none;
+  }
   
   @media only screen and (max-width: 800px) {
     .header{
@@ -160,6 +162,13 @@ ion-menu-button {
       justify-content: space-between;
       align-items: center;
       // margin-top:-30px !important;
+    }
+
+    .smallsearch{
+      display: block;
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .mobInput{
