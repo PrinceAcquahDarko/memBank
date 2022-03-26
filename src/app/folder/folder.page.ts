@@ -64,6 +64,7 @@ export class FolderPage implements OnInit {
      private r:Router, private _ms:MediaService, public toastController: ToastController) {  }
 
   ngOnInit() {
+    this.presentToastWithOptions('uploaded', 'media uploaded successfully')
    
   
 
@@ -173,6 +174,8 @@ export class FolderPage implements OnInit {
     this.r.navigateByUrl('/folder/detail', {state: info})
 
   }
+
+
 
 
 }

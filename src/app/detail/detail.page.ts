@@ -112,15 +112,18 @@ export class DetailPage implements OnInit {
   
 
   download(data){
+    // https://res.cloudinary.com/dzgp1fxou/image/upload/v1648225159/wqmz1ghvjoulehzwih1e.jpg
     this.dshow = true
     this._ms.downloadfile(data.link).subscribe(
       blob =>{
         const a = document.createElement('a');
         const objectURL = URL.createObjectURL(blob)
         a.href = objectURL
-        let x = data.link.indexOf('files')
-        let newVal = data.link.slice(x+6)
-        a.download = newVal
+        let uploadIndex = data.link.indexOf('upload')
+        let linkwoUpload = data.link.slice(uploadIndex+7)
+        let indexofSlash = linkwoUpload.indexOf('/')
+        let imgLink = linkwoUpload.slice(indexofSlash + 1)
+        a.download = imgLink
         a.click();
         URL.revokeObjectURL(objectURL)
         this.dshow = false

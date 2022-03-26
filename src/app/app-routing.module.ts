@@ -41,7 +41,7 @@ const routes: Routes = [
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },
   {
-    path: 'folder/upload', canActivate: [CanActivateGuard],
+    path: 'folder/upload', canActivate:[CanActivateGuard],
     loadChildren: () => import('./upload/upload.module').then( m => m.UploadPageModule)
   },
   {

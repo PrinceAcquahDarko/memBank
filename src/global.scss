@@ -42,7 +42,9 @@ ion-toolbar.md{
   }
 
 
-  
+  ion-spinner{
+    color:white !important
+  }
 
 
 
@@ -51,7 +53,7 @@ ion-toolbar.md{
     color:white;
   }
 
-  my-custom-class{
+  .my-custom-class{
     color: #fff;
     --background: #202124;
   }
