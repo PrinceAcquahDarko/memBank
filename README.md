@@ -3,6 +3,8 @@
 
 The Frontend repository for my MemBank app written in angular/ionic framework.
 
+Backend written in node.js/nest can be found here - [https://github.com/PrinceAcquahDarko/memzz](https://github.com/PrinceAcquahDarko/memzz)
+
 ## Installation
 
 ```bash
